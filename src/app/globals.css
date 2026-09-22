@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ── Fluid Typography Base ──
+   Font-size co mượt từ 13px (320px viewport) → 16px (1280px+).
+   Tất cả rem-based sizes sẽ tự co theo. */
+html {
+  font-size: clamp(13px, 0.75rem + 0.39vw, 16px);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Ẩn khối phụ trên mobile (≤480px) ──
+   Dùng cho sidebar video, banner thư viện, tạp chí, QR, tuyển sinh... */
+@media (max-width: 480px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+@keyframes newsTickerScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.news-ticker-track {
+  display: flex !important;
+  width: max-content !important;
+  flex-shrink: 0 !important;
+  will-change: transform;
+  animation: newsTickerScroll 35s linear infinite !important;
+}
+
+.news-ticker-track:hover {
+  animation-play-state: paused !important;
+}
+
